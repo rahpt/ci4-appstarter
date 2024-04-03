@@ -1,0 +1,23 @@
+{
+    "name": "rahpt/ci4-appstarter",
+    "description": "CodeIgniter4 starter app with shield and modules feature",
+    "license": "proprietary",
+    "type": "project",
+    "version":"1.0.0.0",
+    "homepage": "https://github.com/rahpt/ci4-appstarter",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "codeigniter4/framework": "^4.0",
+        "codeigniter4/shield": "^1.0"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "**/Database/Migrations/**"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
