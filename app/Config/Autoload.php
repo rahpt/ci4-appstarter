@@ -22,6 +22,28 @@ use CodeIgniter\Config\AutoloadConfig;
  */
 class Autoload extends AutoloadConfig
 {
+
+    function __construct() {
+        parent::__construct();
+        $this->loadModules();
+    }
+
+    //load activated plugins to the psr4 variable
+    private function loadModules() {
+        if(file_exists(APPPATH . "Modules/Modules.json")){
+            $mods = file_get_contents(APPPATH . "Modules/Modules.json");
+            $mods = @json_decode($mods);
+            if (!($mods && is_array($mods) && count($mods))) {
+                return false;
+            }
+            foreach ($mods as $item) {
+                if($item->status){
+                    $this->psr4[$item->directory] = APPPATH . "Modules/" . $item->directory;
+                }
+            }
+        }
+    }
+
     /**
      * -------------------------------------------------------------------
      * Namespaces
